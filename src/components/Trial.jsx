@@ -24,6 +24,10 @@
 
 // export default Timer;
 
+
+
+
+
 import React, { Component } from "react";
 
 class Timer extends Component {
@@ -32,6 +36,7 @@ class Timer extends Component {
     this.state = {
       timer: 0,
       previousSpeed: props.speed,
+      lap : [],
     };
     console.log("Constructor Completed");
   }
@@ -61,13 +66,21 @@ class Timer extends Component {
     this.timerOutId = setTimeout(() => {
       clearInterval(this.intervalId);
       console.log("Timer Stopped Successfully", this.intervalId);
-    }, 5000);
+    }, 100000);
   }
 
   componentWillUnmount() {
     clearInterval(this.intervalId);
     clearInterval(this.timerOutId);
     console.log("Cleared due to Unmount");
+  }
+
+  handleLap = () => {
+    let arr = [...this.state.lap]
+    arr.push(this.state.timer)
+    this.setState({lap : arr})
+
+    console.log("Lap Button =>> ", this.state.timer)
   }
 
   render() {
@@ -78,6 +91,16 @@ class Timer extends Component {
     return (
       <>
         <h2> Timings : {this.state.timer}</h2>
+        <button onClick={this.handleLap}> Lap </button>
+
+        <div>
+          <h3> Laps </h3>
+          <ul>
+            {this.state.lap.map((x , ind) => {
+              return <li key={ind} > Lap {ind + 1} : {x} </li>
+            })}
+          </ul>
+        </div>
       </>
     );
   }
