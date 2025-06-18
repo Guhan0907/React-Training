@@ -1,13 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Timer from "./components/Trial";
+import ControlledInput from "./components/ControlledInput";
+import UncontrolledInput from "./components/UnControlledInput";
 
-class HelloComponent extends Component {
+class MyComponent extends Component {
+  // componentDidMount() {
+  //   console.log("Component mounted");
+  // }
+
+  // componentWillUnmount() {
+  //   console.log("Component will unmount");
+  // }
+
   render() {
     return (
-      <div>
-        <h1>Hello</h1>
+      <div key={"uni"}>
+        {" "}
+        <Timer />
+        {/* <ControlledInput /> */}
+        {/* <UncontrolledInput /> */}
       </div>
     );
   }
 }
 
-export default HelloComponent;
+export default MyComponent;
