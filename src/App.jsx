@@ -52,6 +52,7 @@ import ControlledInput from "./components/ControlledInput";
 import UncontrolledInput from "./components/UnControlledInput";
 import ProfileCard from "./components/ProfileCard";
 import FunctionalComponents from "./components/FunctionalComponents";
+import TodoList from "./components/TodoList";
 
 class MyComponent extends PureComponent {
   constructor(props) {
@@ -74,7 +75,8 @@ class MyComponent extends PureComponent {
             {/* <ControlledInput /> */}
             {/* <UncontrolledInput /> */}
             {/* <ProfileCard name={userName} age={Age}  /> */}
-            <FunctionalComponents />
+            {/* <FunctionalComponents /> */}
+            <TodoList />
       </div>
     );
   }
