@@ -1,16 +1,25 @@
 import React, { Component } from "react";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
-import Home from "./Home";
+import HomeCompWithHooks from "./Home";
+
 
 class Authentication extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLogin: true,
-      isUserLogged: false,
-      users: [],
+      isUserLogged: (localStorage.getItem("email") ? true : false),
+      users: [
+        {
+          userName: "Gojo",
+          email: "hello@gmail.com", // fixed typo from gmial to gmail
+          password: "123456",
+        },
+      ],
     };
+
+
   }
 
   handleLogin = (obj) => {
@@ -20,15 +29,22 @@ class Authentication extends Component {
     );
 
     if (userExists) {
-      // this.setState({isUserLogged : true});
+      localStorage.setItem("email" ,obj.email);
       this.setState({ isLogin: true, isUserLogged: true });
-    } else if (obj.email === "") {
+    } 
+    else if (obj.email === "") {
       alert("Enter the Details");
     } else {
       console.log(obj);
       alert("Invalid Credentials");
     }
   };
+
+  handleLogout = () => {
+    localStorage.removeItem("email");
+    // <Naviag
+    console.log("-- varutha --")
+  }
 
   handleSignUp = (obj) => {
     const { users } = this.state;
@@ -48,7 +64,7 @@ class Authentication extends Component {
       this.setState({
         users: [...users, data],
         isLogin: true,
-        isUserLogged: true,
+        // isUserLogged: true,
       });
       // this.setState({})
     }
@@ -60,12 +76,13 @@ class Authentication extends Component {
   };
 
   render() {
+    
     return (
       <>
         {/* <h1> Hello this is the Authentication Page </h1> */}
         <div>
           {this.state.isUserLogged ? (
-            <Home />
+            <HomeCompWithHooks  logout = {this.handleLogout}/>
           ) : this.state.isLogin ? (
             <Login onLogin={this.handleLogin} goToSignUp={this.handleToggle} />
           ) : (
