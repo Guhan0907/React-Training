@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
-import ProtectedRoutes from "./pages/ProtectedRoutes.jsx";
+import ProtectedRoutes from "./middleware/ProtectedRoutes.jsx";
 
 // importing the pages
 import Authentication from "./pages/Authentication.jsx";
@@ -13,6 +13,7 @@ import MuiWithHooks from "./pages/MuiComponents";
 import { PageNotFound } from "./pages/PageNotFound.jsx";
 import ProductsListHooks from "./pages/ProductDetails.jsx";
 import EachItemHooks from "./pages/EachItem.jsx";
+import ApiChecking from "./pages/ApiChecking.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
     path: "/product/:id",
     element: <ProtectedRoutes> <EachItemHooks /> </ProtectedRoutes>,
   },
+  {
+    path : "/api",
+    element : <ProtectedRoutes > <ApiChecking /> </ProtectedRoutes>
+  }
 ]);
 
 // theme object
